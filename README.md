@@ -1,6 +1,6 @@
 # Cult FIT Store – Full-Stack E-commerce Platform
 
-HealthGuard is a full-stack e-commerce web application designed to provide a seamless online shopping experience. It includes product browsing, cart management, and order processing features backed by a Node.js and MySQL architecture.
+   Cult FIT Store is a full-stack e-commerce web application designed to provide a seamless online shopping experience. It includes product browsing, cart management, and order processing features backed by a Node.js and MySQL architecture.
 
 ---
 
