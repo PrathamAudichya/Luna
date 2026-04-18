@@ -240,6 +240,11 @@
 
     <script src="js/script.js"></script>
     <script>
+        // Safety fallback: API_URL is defined in js/script.js; this guards if that file failed
+        // NOTE: Must use window assignment, NOT var — var would conflict with const in script.js
+        //       and cause a SyntaxError that kills this entire script block silently.
+        if (typeof API_URL === 'undefined') { window.API_URL = 'http://localhost:5000/api'; }
+
         let currentSubtotal = 0;
         let currentGst = 0;
         let appliedCouponId = null;

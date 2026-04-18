@@ -137,18 +137,11 @@ CREATE TABLE addresses (
 -- ============================================================================
 CREATE TABLE coupons (
     id              INT AUTO_INCREMENT PRIMARY KEY,
-    code            VARCHAR(30)     NOT NULL UNIQUE,
-    description     VARCHAR(255),
-    discount_type   ENUM('percentage', 'flat') NOT NULL DEFAULT 'percentage',
-    discount_value  DECIMAL(10,2)   NOT NULL,
-    min_order_value DECIMAL(10,2)   DEFAULT 0,
-    max_discount    DECIMAL(10,2)   DEFAULT NULL,
-    usage_limit     INT             DEFAULT NULL,
-    times_used      INT             DEFAULT 0,
-    valid_from      DATETIME        NOT NULL,
-    valid_until     DATETIME        NOT NULL,
-    is_active       BOOLEAN         DEFAULT TRUE,
-    created_at      TIMESTAMP       DEFAULT CURRENT_TIMESTAMP
+    code            VARCHAR(50),
+    discount_type   VARCHAR(20),
+    value           INT,
+    expiry_date     DATE,
+    usage_limit     INT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
@@ -325,6 +318,12 @@ CREATE TABLE admin_logs (
 INSERT INTO users (full_name, email, phone, password_hash, role) VALUES
 ('Pratham Gym Bro',  'pratham@gym.com',       '+919876543210', '$2b$10$xJQkR5Vz0GNdW2HpYqTmF.hashedpassword1', 'admin'),
 ('Rahul Fitness',    'rahul.fit@gym.com',     '+919123456789', '$2b$10$xJQkR5Vz0GNdW2HpYqTmF.hashedpassword2', 'customer');
+
+-- ----- COUPONS -----
+INSERT INTO coupons (code, discount_type, value, expiry_date, usage_limit) VALUES
+('SAVE10', 'percentage', 10, DATE_ADD(NOW(), INTERVAL 30 DAY), 100),
+('FIRST50', 'flat', 50, DATE_ADD(NOW(), INTERVAL 30 DAY), 100),
+('FREESHIP', 'freeship', 100, DATE_ADD(NOW(), INTERVAL 30 DAY), 100);
 
 -- ----- CATEGORIES -----
 INSERT INTO categories (id, name, slug, description, image_url) VALUES
