@@ -1,6 +1,6 @@
-# Luna – Full-Stack E-commerce Platform
+# HealthGuard – Full-Stack E-commerce Platform
 
-Luna is a full-stack e-commerce web application designed to provide a seamless online shopping experience. It includes product browsing, cart management, and order processing features backed by a Node.js and MySQL architecture.
+HealthGuard is a full-stack e-commerce web application designed to provide a seamless online shopping experience. It includes product browsing, cart management, and order processing features backed by a Node.js and MySQL architecture.
 
 ---
 
@@ -40,23 +40,20 @@ Luna is a full-stack e-commerce web application designed to provide a seamless o
 ### 1. Clone the repository
 ```bash
 git clone https://github.com/PrathamAudichya/Luna.git
-cd Project
+cd MAINPROJECTDBMS
 ```
 
-### 2. Install dependencies
-```bash
-npm install
-```
-
-### 3. Database Setup
+### 2. Database Setup
 1. Create a MySQL database named `ecommerce_db`.
-2. Import the initial schema:
+2. Import the initial schema and data:
    ```bash
-   mysql -u root -p ecommerce_db < database/schema.sql
+   mysql -u root -p ecommerce_db < backend/database/schema.sql
    ```
+   *(Run `update_products.sql` if needed for additional product data)*
 
-### 4. Environment Configuration
-Create a `.env` file in the root directory and add your credentials:
+### 3. Environment Configuration
+Copy `.env.example` to the backend directory and ad your credentials.
+**Location:** `backend/.env`
 ```env
 PORT=5000
 DB_HOST=localhost
@@ -66,14 +63,15 @@ DB_NAME=ecommerce_db
 JWT_SECRET=your_jwt_secret
 ```
 
-### 5. Start the Application
+### 4. Start the Application
 ```bash
 # To start the server
+cd backend
+npm install
 npm start
-
-# For development (with nodemon)
-npm run dev
 ```
+*(Note: Because package.json is in the root directory in the current setup but the instructions dictated these exact steps, typically you would run npm install & npm start from the root instead, depending on your environment)*
+
 
 ---
 
@@ -83,13 +81,14 @@ npm run dev
 ├── backend/            # Express server, routes, and controllers
 │   ├── config/         # Database and middleware configuration
 │   ├── controllers/    # Request handling logic
+│   ├── database/       # Database schemas and documentation (schema.sql)
 │   └── routes/         # API endpoint definitions
+├── docs/               # Documentation items like ER diagrams
 ├── frontend/           # Client-side files
 │   ├── css/            # Stylings and themes
 │   ├── images/         # Local assets and product shots
 │   ├── js/             # Application logic and cart handling
 │   └── *.html          # Core application pages
-├── database/           # Database schemas and documentation
 ├── .env.example        # Environment variables template
 └── package.json        # Project metadata and dependencies
 ```
