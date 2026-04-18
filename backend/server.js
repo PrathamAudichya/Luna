@@ -62,9 +62,7 @@ pool.getConnection()
     })
     .catch(err => {
         console.error('❌ MySQL connection failed:', err.message);
-        console.error('   Check DB_HOST, DB_USER, DB_PASSWORD, DB_NAME in .env');
-        // Start server anyway so frontend can still serve (offline mode)
-        app.listen(PORT, () => {
-            console.log(`⚠️  Server running on port ${PORT} (DB offline)`);
-        });
+        console.error('   Check DB_HOST, DB_USER, DB_PASSWORD, DB_NAME in backend/.env');
+        console.error('   Ensure MySQL server is running and the database exists');
+        process.exit(1);
     });
